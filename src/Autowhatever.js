@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import createSectionIterator from 'section-iterator';
 import themeable from 'react-themeable';
 import ListScrollBound from 'react-list-scroll-bound';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 function noop() {}
 
@@ -162,9 +163,7 @@ export default class Autowhatever extends Component {
                       {sectionTitle}
                     </div>
                 }
-                <ListScrollBound {...theme(`react-autowhatever-${id}-section-${sectionIndex}-items-container`, 'sectionItemsContainer')}>
                   {this.renderItemsList(theme, sectionItemsArray[sectionIndex], sectionIndex)}
-                </ListScrollBound>
               </div>
             );
           })
@@ -187,7 +186,9 @@ export default class Autowhatever extends Component {
           ref="itemsContainer"
           role="listbox"
           {...theme(`react-autowhatever-${id}-items-container`, 'itemsContainer')}>
+        <Scrollbars autoHeight>
         {this.renderItemsList(theme, items, null)}
+        </Scrollbars>
       </ul>
     );
   }

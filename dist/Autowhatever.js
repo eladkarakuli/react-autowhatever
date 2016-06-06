@@ -26,6 +26,8 @@ var _reactListScrollBound = require('react-list-scroll-bound');
 
 var _reactListScrollBound2 = _interopRequireDefault(_reactListScrollBound);
 
+var _reactCustomScrollbars = require('react-custom-scrollbars');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -181,11 +183,7 @@ var Autowhatever = function (_Component) {
               theme('react-autowhatever-' + id + '-section-' + sectionIndex + '-title', 'sectionTitle'),
               sectionTitle
             ),
-            _react2.default.createElement(
-              _reactListScrollBound2.default,
-              theme('react-autowhatever-' + id + '-section-' + sectionIndex + '-items-container', 'sectionItemsContainer'),
-              _this3.renderItemsList(theme, sectionItemsArray[sectionIndex], sectionIndex)
-            )
+            _this3.renderItemsList(theme, sectionItemsArray[sectionIndex], sectionIndex)
           );
         })
       );
@@ -208,7 +206,11 @@ var Autowhatever = function (_Component) {
           ref: 'itemsContainer',
           role: 'listbox'
         }, theme('react-autowhatever-' + id + '-items-container', 'itemsContainer')),
-        this.renderItemsList(theme, items, null)
+        _react2.default.createElement(
+          _reactCustomScrollbars.Scrollbars,
+          { autoHeight: true },
+          this.renderItemsList(theme, items, null)
+        )
       );
     }
   }, {
