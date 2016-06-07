@@ -172,23 +172,31 @@ export default class Autowhatever extends Component {
     );
   }
 
+  renderItemsWithScrollBar(list) {
+    return (
+      <Scrollbars autoHeight>
+        {list}
+      </Scrollbars>
+    )
+  }
+
   renderItems(theme) {
-    const { items } = this.props;
+    const { items, inputProps } = this.props;
 
     if (items.length === 0) {
       return null;
     }
 
     const id = this.props;
+    const list = this.renderItemsList(theme, items, null);
+    const renderedItems = inputProps.scollable ? this.renderItemsWithScrollBar(list) : list;
 
     return (
       <ul id={this.getItemsContainerId()}
           ref="itemsContainer"
           role="listbox"
           {...theme(`react-autowhatever-${id}-items-container`, 'itemsContainer')}>
-        <Scrollbars autoHeight>
-        {this.renderItemsList(theme, items, null)}
-        </Scrollbars>
+        { renderedItems }
       </ul>
     );
   }

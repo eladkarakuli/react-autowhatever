@@ -189,9 +189,20 @@ var Autowhatever = function (_Component) {
       );
     }
   }, {
+    key: 'renderItemsWithScrollBar',
+    value: function renderItemsWithScrollBar(list) {
+      return _react2.default.createElement(
+        _reactCustomScrollbars.Scrollbars,
+        { autoHeight: true },
+        list
+      );
+    }
+  }, {
     key: 'renderItems',
     value: function renderItems(theme) {
-      var items = this.props.items;
+      var _props4 = this.props;
+      var items = _props4.items;
+      var inputProps = _props4.inputProps;
 
 
       if (items.length === 0) {
@@ -199,6 +210,8 @@ var Autowhatever = function (_Component) {
       }
 
       var id = this.props;
+      var list = this.renderItemsList(theme, items, null);
+      var renderedItems = inputProps.scollable ? this.renderItemsWithScrollBar(list) : list;
 
       return _react2.default.createElement(
         'ul',
@@ -206,11 +219,7 @@ var Autowhatever = function (_Component) {
           ref: 'itemsContainer',
           role: 'listbox'
         }, theme('react-autowhatever-' + id + '-items-container', 'itemsContainer')),
-        _react2.default.createElement(
-          _reactCustomScrollbars.Scrollbars,
-          { autoHeight: true },
-          this.renderItemsList(theme, items, null)
-        )
+        renderedItems
       );
     }
   }, {
@@ -218,10 +227,10 @@ var Autowhatever = function (_Component) {
     value: function onKeyDown(event) {
       var _this4 = this;
 
-      var _props4 = this.props;
-      var inputProps = _props4.inputProps;
-      var focusedSectionIndex = _props4.focusedSectionIndex;
-      var focusedItemIndex = _props4.focusedItemIndex;
+      var _props5 = this.props;
+      var inputProps = _props5.inputProps;
+      var focusedSectionIndex = _props5.focusedSectionIndex;
+      var focusedItemIndex = _props5.focusedItemIndex;
       var onKeyDownFn = inputProps.onKeyDown; // Babel is throwing:
       //   "onKeyDown" is read-only
       // on:
@@ -232,10 +241,10 @@ var Autowhatever = function (_Component) {
         case 'ArrowUp':
           {
             var _ret = function () {
-              var _props5 = _this4.props;
-              var multiSection = _props5.multiSection;
-              var items = _props5.items;
-              var getSectionItems = _props5.getSectionItems;
+              var _props6 = _this4.props;
+              var multiSection = _props6.multiSection;
+              var items = _props6.items;
+              var getSectionItems = _props6.getSectionItems;
 
               var sectionIterator = (0, _sectionIterator2.default)({
                 multiSection: multiSection,
@@ -294,11 +303,11 @@ var Autowhatever = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props6 = this.props;
-      var id = _props6.id;
-      var multiSection = _props6.multiSection;
-      var focusedSectionIndex = _props6.focusedSectionIndex;
-      var focusedItemIndex = _props6.focusedItemIndex;
+      var _props7 = this.props;
+      var id = _props7.id;
+      var multiSection = _props7.multiSection;
+      var focusedSectionIndex = _props7.focusedSectionIndex;
+      var focusedItemIndex = _props7.focusedItemIndex;
 
       var theme = (0, _reactThemeable2.default)(this.props.theme);
       var renderedItems = multiSection ? this.renderSections(theme) : this.renderItems(theme);
