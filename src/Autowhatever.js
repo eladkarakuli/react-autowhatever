@@ -187,16 +187,20 @@ export default class Autowhatever extends Component {
       return null;
     }
 
-    const id = this.props;
-    const list = this.renderItemsList(theme, items, null);
-    const renderedItems = inputProps.scollable ? this.renderItemsWithScrollBar(list) : list;
+    const
+      id = this.props,
+      list = this.renderItemsList(theme, items, null);
 
     return (
       <ul id={this.getItemsContainerId()}
           ref="itemsContainer"
           role="listbox"
           {...theme(`react-autowhatever-${id}-items-container`, 'itemsContainer')}>
-        { renderedItems }
+        {
+          inputProps.scrollable ?
+            this.renderItemsWithScrollBar(list) :
+            list
+        }
       </ul>
     );
   }

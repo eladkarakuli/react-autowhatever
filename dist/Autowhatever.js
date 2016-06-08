@@ -209,9 +209,8 @@ var Autowhatever = function (_Component) {
         return null;
       }
 
-      var id = this.props;
-      var list = this.renderItemsList(theme, items, null);
-      var renderedItems = inputProps.scollable ? this.renderItemsWithScrollBar(list) : list;
+      var id = this.props,
+          list = this.renderItemsList(theme, items, null);
 
       return _react2.default.createElement(
         'ul',
@@ -219,7 +218,7 @@ var Autowhatever = function (_Component) {
           ref: 'itemsContainer',
           role: 'listbox'
         }, theme('react-autowhatever-' + id + '-items-container', 'itemsContainer')),
-        renderedItems
+        inputProps.scrollable ? this.renderItemsWithScrollBar(list) : list
       );
     }
   }, {
