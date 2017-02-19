@@ -218,7 +218,7 @@ var Autowhatever = function (_Component) {
           ref: 'itemsContainer',
           role: 'listbox'
         }, theme('react-autowhatever-' + id + '-items-container', 'itemsContainer')),
-        inputProps.['data-scrollable'] ? this.renderItemsWithScrollBar(list) : list
+        inputProps['data-scrollable'] ? this.renderItemsWithScrollBar(list) : list
       );
     }
   }, {
